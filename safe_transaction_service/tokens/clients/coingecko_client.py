@@ -178,5 +178,8 @@ class CoingeckoClient(BaseHTTPClient):
     def get_neon_usd_price(self) -> float:
         return self.get_price("neon")
 
+    def get_btc_usd_price(self) -> float:
+        return self.get_price("bitcoin")
+
     def get_mtr_usd_price(self) -> float:
         return self.get_price("meter-stable")

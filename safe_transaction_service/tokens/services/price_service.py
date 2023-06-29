@@ -242,6 +242,9 @@ class PriceService:
     def get_neon_usd_price(self) -> float:
         return self.coingecko_client.get_neon_usd_price()
 
+    def get_btc_usd_price(self) -> float:
+        return self.coingecko_client.get_btc_usd_price()
+
     def get_mtr_usd_price(self) -> float:
         return self.coingecko_client.get_mtr_usd_price()
 
@@ -378,6 +381,11 @@ class PriceService:
             EthereumNetwork.NEON_EVM_DEVNET,
         ):
             return self.get_neon_usd_price()
+        elif self.ethereum_network in (
+            EthereumNetwork.RSK_MAINNET,
+            EthereumNetwork.RSK_TESTNET,
+        ):
+            return self.get_btc_usd_price()
         else:
             return self.get_ether_usd_price()
 
