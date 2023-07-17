@@ -230,6 +230,9 @@ class PriceService:
         except CannotGetPrice:
             return self.coingecko_client.get_kcs_usd_price()
 
+    def get_mnt_usd_price(self) -> float:
+        return self.coingecko_client.get_mnt_usd_price()
+
     def get_mtr_usd_price(self) -> float:
         return self.coingecko_client.get_mtr_usd_price()
 
@@ -349,6 +352,11 @@ class PriceService:
             EthereumNetwork.FANTOM_TESTNET,
         ):
             return self.get_ftm_usd_price()
+        elif self.ethereum_network in (
+            EthereumNetwork.MANTLE,
+            EthereumNetwork.MANTLE_TESTNET
+        ):
+            return self.get_mnt_usd_price()
         else:
             return self.get_ether_usd_price()
 
