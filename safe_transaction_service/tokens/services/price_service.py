@@ -239,6 +239,9 @@ class PriceService:
     def get_mnt_usd_price(self) -> float:
         return self.coingecko_client.get_mnt_usd_price()
 
+    def get_neon_usd_price(self) -> float:
+        return self.coingecko_client.get_neon_usd_price()
+
     def get_mtr_usd_price(self) -> float:
         return self.coingecko_client.get_mtr_usd_price()
 
@@ -370,6 +373,11 @@ class PriceService:
             EthereumNetwork.MANTLE_TESTNET
         ):
             return self.get_mnt_usd_price()
+        elif self.ethereum_network in (
+            EthereumNetwork.NEON_EVM_MAINNET,
+            EthereumNetwork.NEON_EVM_DEVNET,
+        ):
+            return self.get_neon_usd_price()
         else:
             return self.get_ether_usd_price()
 
