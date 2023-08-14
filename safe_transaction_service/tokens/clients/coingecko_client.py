@@ -38,6 +38,8 @@ class CoingeckoClient(BaseHTTPClient):
         EthereumNetwork.SHIDEN: "shiden",
         EthereumNetwork.EVMOS: "evmos",
         EthereumNetwork.HARMONY_MAINNET_SHARD_0: "harmony-shard-0",
+        EthereumNetwork.MOONBEAM: "moonbeam",
+        EthereumNetwork.MOONRIVER: "moonriver",
     }
     base_url = "https://api.coingecko.com/"
 
@@ -139,6 +141,12 @@ class CoingeckoClient(BaseHTTPClient):
 
     def get_matic_usd_price(self) -> float:
         return self.get_price("matic-network")
+
+    def get_movr_usd_price(self) -> float:
+        return self.get_price("moonriver")
+
+    def get_mbeam_usd_price(self) -> float:
+        return self.get_price("moonbeam")
 
     def get_gather_usd_price(self) -> float:
         return self.get_price("gather")

@@ -212,6 +212,12 @@ class PriceService:
             except CannotGetPrice:
                 return self.coingecko_client.get_evmos_usd_price()
 
+    def get_movr_usd_price(self) -> float:
+        return self.coingecko_client.get_movr_usd_price()
+
+    def get_mbeam_usd_price(self) -> float:
+        return self.coingecko_client.get_mbeam_usd_price()
+
     def get_cronos_usd_price(self) -> float:
         return self.kucoin_client.get_cro_usd_price()
 
@@ -271,6 +277,13 @@ class PriceService:
             return self.get_ewt_usd_price()
         elif self.ethereum_network in (EthereumNetwork.POLYGON, EthereumNetwork.MUMBAI):
             return self.get_matic_usd_price()
+        elif self.ethereum_network in (
+            EthereumNetwork.MOONRIVER,
+            EthereumNetwork.MOONBASE_ALPHA,
+        ):
+            return self.get_movr_usd_price()
+        elif self.ethereum_network == EthereumNetwork.MOONBEAM:
+            return self.get_mbeam_usd_price()
         elif self.ethereum_network == EthereumNetwork.BINANCE_SMART_CHAIN_MAINNET:
             return self.get_binance_usd_price()
         elif self.ethereum_network in (
