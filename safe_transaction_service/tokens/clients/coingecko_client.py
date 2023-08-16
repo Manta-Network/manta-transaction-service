@@ -37,6 +37,7 @@ class CoingeckoClient(BaseHTTPClient):
         EthereumNetwork.ASTAR: "astar",
         EthereumNetwork.SHIDEN: "shiden",
         EthereumNetwork.EVMOS: "evmos",
+        EthereumNetwork.HARMONY_MAINNET_SHARD_0: "harmony-shard-0",
     }
     base_url = "https://api.coingecko.com/"
 
@@ -153,6 +154,9 @@ class CoingeckoClient(BaseHTTPClient):
 
     def get_fuse_usd_price(self) -> float:
         return self.get_price("fuse-network-token")
+
+    def get_harmony_usd_price(self) -> float:
+        return self.get_price("harmony")
 
     def get_kcs_usd_price(self) -> float:
         return self.get_price("kucoin-shares")

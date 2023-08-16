@@ -221,6 +221,9 @@ class PriceService:
     def get_ftm_usd_price(self) -> float:
         return self.kucoin_client.get_ftm_usd_price()
 
+    def get_harmony_usd_price(self) -> float:
+        return self.coingecko_client.get_harmony_usd_price()
+
     def get_kcs_usd_price(self) -> float:
         try:
             return self.kucoin_client.get_kcs_usd_price()
@@ -304,6 +307,11 @@ class PriceService:
             EthereumNetwork.FUSE_SPARKNET,
         ):
             return self.coingecko_client.get_fuse_usd_price()
+        elif self.ethereum_network in (
+            EthereumNetwork.HARMONY_MAINNET_SHARD_0,
+            EthereumNetwork.HARMONY_TESTNET_SHARD_0,
+        ):
+            return self.get_harmony_usd_price()
         elif self.ethereum_network in (
             EthereumNetwork.KCC_MAINNET,
             EthereumNetwork.KCC_TESTNET,
