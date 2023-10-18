@@ -203,6 +203,15 @@ class PriceService:
             except CannotGetPrice:
                 return self.coingecko_client.get_shiden_usd_price()
 
+    def get_evmos_usd_price(self) -> float:
+        try:
+            return self.coingecko_client.get_evmos_usd_price()
+        except CannotGetPrice:
+            try:
+                return self.coingecko_client.get_evmos_usd_price()
+            except CannotGetPrice:
+                return self.coingecko_client.get_evmos_usd_price()
+
     def get_cronos_usd_price(self) -> float:
         return self.kucoin_client.get_cro_usd_price()
 
@@ -283,6 +292,8 @@ class PriceService:
             return self.get_astar_usd_price()
         elif self.ethereum_network == EthereumNetwork.SHIDEN:
             return self.get_shiden_usd_price()
+        elif self.ethereum_network in (EthereumNetwork.EVMOS, EthereumNetwork.EVMOS_TESTNET):
+            return self.get_evmos_usd_price()
         elif self.ethereum_network in (
             EthereumNetwork.CRONOS_TESTNET,
             EthereumNetwork.CRONOS_MAINNET_BETA,

@@ -36,6 +36,7 @@ class CoingeckoClient(BaseHTTPClient):
         EthereumNetwork.METER_MAINNET: "meter",
         EthereumNetwork.ASTAR: "astar",
         EthereumNetwork.SHIDEN: "shiden",
+        EthereumNetwork.EVMOS: "evmos",
     }
     base_url = "https://api.coingecko.com/"
 
@@ -146,6 +147,9 @@ class CoingeckoClient(BaseHTTPClient):
 
     def get_shiden_usd_price(self) -> float:
         return self.get_price("shiden")
+
+    def get_evmos_usd_price(self) -> float:
+        return self.get_price("evmos")
 
     def get_fuse_usd_price(self) -> float:
         return self.get_price("fuse-network-token")
