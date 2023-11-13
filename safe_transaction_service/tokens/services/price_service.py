@@ -371,6 +371,8 @@ class PriceService:
             EthereumNetwork.FANTOM_TESTNET,
         ):
             return self.get_ftm_usd_price()
+        elif self.ethereum_network == EthereumNetwork.MANTA_PACIFIC_MAINNET:
+            return self.get_ether_usd_price()
         elif self.ethereum_network in (
             EthereumNetwork.MANTLE,
             EthereumNetwork.MANTLE_TESTNET
