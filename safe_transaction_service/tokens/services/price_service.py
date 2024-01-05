@@ -248,6 +248,9 @@ class PriceService:
     def get_mtr_usd_price(self) -> float:
         return self.coingecko_client.get_mtr_usd_price()
 
+    def get_wemix_usd_price(self) -> float:
+        return self.coingecko_client.get_wemix_usd_price()
+
     @cachedmethod(cache=operator.attrgetter("cache_ether_usd_price"))
     @cache_memoize(60 * 30, prefix="balances-get_ether_usd_price")  # 30 minutes
     def get_ether_usd_price(self) -> float:
@@ -388,6 +391,16 @@ class PriceService:
             EthereumNetwork.RSK_TESTNET,
         ):
             return self.get_btc_usd_price()
+        elif self.ethereum_network in (
+            EthereumNetwork.KROMA,
+            EthereumNetwork.KROMA_SEPOLIA,
+        ):
+            return self.get_ether_usd_price()
+        elif self.ethereum_network in (
+            EthereumNetwork.WEMIX3_0_MAINNET,
+            EthereumNetwork.WEMIX3_0_TESTNET
+        ):
+            return self.get_wemix_usd_price()
         else:
             return self.get_ether_usd_price()
 

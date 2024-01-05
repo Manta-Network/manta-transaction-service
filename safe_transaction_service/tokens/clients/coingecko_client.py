@@ -40,6 +40,7 @@ class CoingeckoClient(BaseHTTPClient):
         EthereumNetwork.HARMONY_MAINNET_SHARD_0: "harmony-shard-0",
         EthereumNetwork.MOONBEAM: "moonbeam",
         EthereumNetwork.MOONRIVER: "moonriver",
+        EthereumNetwork.WEMIX3_0_MAINNET: "wemix-network",
     }
     base_url = "https://api.coingecko.com/"
 
@@ -183,3 +184,6 @@ class CoingeckoClient(BaseHTTPClient):
 
     def get_mtr_usd_price(self) -> float:
         return self.get_price("meter-stable")
+
+    def get_wemix_usd_price(self) -> float:
+        return self.get_price("wemix-token")
