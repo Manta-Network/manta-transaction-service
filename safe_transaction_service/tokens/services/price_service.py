@@ -401,6 +401,8 @@ class PriceService:
             EthereumNetwork.WEMIX3_0_TESTNET
         ):
             return self.get_wemix_usd_price()
+        elif self.ethereum_network == EthereumNetwork.PGN_MAINNET:
+            return self.get_ether_usd_price()
         else:
             return self.get_ether_usd_price()
 
