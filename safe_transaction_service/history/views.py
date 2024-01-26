@@ -72,12 +72,7 @@ class AboutView(APIView):
 
     @method_decorator(cache_page(5 * 60))  # 5 minutes
     def get(self, request, format=None):
-        # Used for chains with private RPC endpoints. Public RPC will be exposed as `ETHEREUM_NODE_URL`
-        # while private RPC will be used in fact
-        if settings.ETHEREUM_PUBLIC_NODE_URL:
-            ethereum_node_url = settings.ETHEREUM_PUBLIC_NODE_URL
-        else:
-            ethereum_node_url = settings.ETHEREUM_NODE_URL
+        ethereum_node_url = settings.ETHEREUM_NODE_URL if not settings.HIDE_ETHEREUM_RPC else None
 
         content = {
             "name": "Safe Transaction Service",
