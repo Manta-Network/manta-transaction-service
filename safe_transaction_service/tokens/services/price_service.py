@@ -251,6 +251,9 @@ class PriceService:
     def get_wemix_usd_price(self) -> float:
         return self.coingecko_client.get_wemix_usd_price()
 
+    def get_zeta_usd_price(self) -> float:
+        return self.coingecko_client.get_zeta_usd_price()
+
     @cachedmethod(cache=operator.attrgetter("cache_ether_usd_price"))
     @cache_memoize(60 * 30, prefix="balances-get_ether_usd_price")  # 30 minutes
     def get_ether_usd_price(self) -> float:
@@ -401,6 +404,11 @@ class PriceService:
             EthereumNetwork.WEMIX3_0_TESTNET
         ):
             return self.get_wemix_usd_price()
+        elif self.ethereum_network in (
+            EthereumNetwork.ZETACHAIN_MAINNET,
+            EthereumNetwork.ZETACHAIN_ATHENS_TESTNET
+        ):
+            return self.get_zeta_usd_price()
         elif self.ethereum_network == EthereumNetwork.PGN_MAINNET:
             return self.get_ether_usd_price()
         elif self.ethereum_network == EthereumNetwork.MODE:

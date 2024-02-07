@@ -41,6 +41,7 @@ class CoingeckoClient(BaseHTTPClient):
         EthereumNetwork.MOONBEAM: "moonbeam",
         EthereumNetwork.MOONRIVER: "moonriver",
         EthereumNetwork.WEMIX3_0_MAINNET: "wemix-network",
+        EthereumNetwork.ZETACHAIN_MAINNET: "zetachain",
     }
     base_url = "https://api.coingecko.com/"
 
@@ -187,3 +188,6 @@ class CoingeckoClient(BaseHTTPClient):
 
     def get_wemix_usd_price(self) -> float:
         return self.get_price("wemix-token")
+
+    def get_zeta_usd_price(self) -> float:
+        return self.get_price("zetachain")
